@@ -1,9 +1,3 @@
----
-tags:
-- protein language model
-datasets:
-- IEDB
----
 
 # TransHLA model
 
