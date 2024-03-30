@@ -28,7 +28,7 @@ Then, install the `requirements.txt`
 pip install -r  requirements.txt
 ```
 
-Then, change the directory to the `model_train_test`, and use the `train.py`
+Then, change the directory to the `model_train_test`, and use the `train.py`:
 
 ```
 cd model_train_test
@@ -37,6 +37,11 @@ cd model_train_test
 python train.py --train_path your_train.csv --validation_path your_validation.csv --model_path your_path_to_save_model --model_name your_model_name.pt
 ```
 
+And you can use the `inference.py` to use your own model:
+
+```
+python inference.py --test_path your_test.csv --model_path your_model.pt --ouputs_path your_outputs_path.npy
+```
 
 
 ### How to use in transformers
