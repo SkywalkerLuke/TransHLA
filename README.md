@@ -115,6 +115,6 @@ if __name__ == "__main__":
     peptide_encoding = torch.tensor(peptide_encoding)
     outputs,representations = model(peptide_encoding.to(device))
     print(outputs)
-	print(representations)
+    print(representations)
 
 ```
