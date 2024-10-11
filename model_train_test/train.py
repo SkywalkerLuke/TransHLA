@@ -328,8 +328,8 @@ def parse_args():
 def get_train_config_HLA():
     # model parameters 
     parse = argparse.ArgumentParser(description='TransHLA')
-    parse.add_argument('-max_len',type = int, default = 14,help = 'max_len')
-    parse.add_argument('-max-len', type=int, default=14, help='max length of input sequences')
+    parse.add_argument('-max_len',type = int, default = 14,help = 'max length of input sequences')
+    # parse.add_argument('-max-len', type=int, default=14, help='max length of input sequences')
     parse.add_argument('-n_layers', type=int, default=6, help='number of encoder blocks')  # 3
     parse.add_argument('-n_head', type=int, default=8, help='number of head in multi-head attention')  # 8
     parse.add_argument('-d_model', type=int, default=1280, help='residue embedding dimension')  # 64
