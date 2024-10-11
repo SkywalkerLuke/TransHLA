@@ -103,6 +103,7 @@ def main():
     print('mcc: ' + str(mcc))
     print('recall: ' + str(recall))
     print('precision: ' + str(precision))
+    print('sace result')
     # outputs = np.save(predict_label)
     np.save(outputs_path,predict_label)
     #plot_auc
