@@ -32,8 +32,7 @@ import argparse
 def config():
     # model parameters 
     parse = argparse.ArgumentParser(description='TransHLA')
-    parse.add_argument('-max_len',type = int, default = 14,help = 'max_len')
-    parse.add_argument('-max-len', type=int, default=14, help='max length of input sequences')
+    parse.add_argument('-max_len',type = int, default = 14,help = 'max length of input sequences')
     parse.add_argument('-n_layers', type=int, default=6, help='number of encoder blocks')  # 3
     parse.add_argument('-n_head', type=int, default=8, help='number of head in multi-head attention')  # 8
     parse.add_argument('-d_model', type=int, default=1280, help='residue embedding dimension')  # 64
@@ -57,6 +56,7 @@ def main():
     parameters = config()
     test = pd.read_csv(parameters.test_path, header=0)
     outputs_path = parameters.outputs_path
+    max_len = parameters.max_len
     # test = pd.read_csv("../data/HLA_II_epitope_test.csv", header=0)
     
     # test = pd.read_csv("../data/HLA_I_external_1_time_negative.csv", header=0)
@@ -69,7 +69,7 @@ def main():
     
     
     #if the type is HLA_II, please use 21 as the parameter
-    x_test = remove_samples_with_length_greater_than(x_test, 14)
+    x_test = remove_samples_with_length_greater_than(x_test, max_len)
     test_label = test.iloc[:, 1][x_test.index].reset_index(drop=True)
     x_test = x_test.reset_index(drop=True)
     
