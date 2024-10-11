@@ -158,50 +158,108 @@ def test_loader_eval(test, test_labels, batchsize, device, model):
 
 
 
-def training(model, device, epochs, criterion, optimizer, traindata, test, test_labels,train_path,train_name,patience=5):
+# def training(model, device, epochs, criterion, optimizer, traindata, test, test_labels,train_path,train_name,patience=5):
+#     running_loss = 0
+#     max_performance = 0
+#     early_stop_counter = 0
+#     best_model_state = None
+#     stop_training = False
+
+#     for epoch in tqdm(range(epochs), desc="Epochs"):
+#         if stop_training:
+#             break
+
+#         for step, (inputs, labels) in enumerate(tqdm(traindata, desc="Training", leave=False)):
+#             model.train()
+#             inputs = inputs.to(device)
+#             labels = labels.to(device)
+#             model = model.to(device)
+#             outputs, _ = model(inputs)
+#             # loss = criterion(outputs,labels)
+#             loss = get_val_loss(outputs, labels, criterion)
+#             optimizer.zero_grad()
+#             loss.backward()
+#             optimizer.step()
+#             running_loss += loss.item()
+
+#         acc, mcc, f1, recall, precision, result, labels,predict_label, representation = test_loader_eval(
+#             test, test_labels, 128, device, model)
+    
+#         if acc > max_performance:
+#             print("best_model_save")
+#             save_model(model.state_dict(), acc,
+#                        train_path, train_name)
+#             max_performance = acc
+#             early_stop_counter = 0
+#             best_model_state = model.state_dict()
+
+#         else:
+#             early_stop_counter += 1
+#             if early_stop_counter >= patience:
+#                 print("Early stopping triggered. No improvement in validation accuracy for {} epochs.".format(
+#                     patience))
+#                 stop_training = True
+
+#         print("epoch {}: validation_accuracy {:.3f}, mcc {:.3f}, f1 {:.3f}, recall {:.3f} precision{}".format(
+#             epoch + 1, acc, mcc, f1, recall,precision))
+#         running_loss = 0
+
+#         if stop_training:
+#             break
+
+#     if best_model_state is not None:
+#         model.load_state_dict(best_model_state)
+
+#     return model
+
+
+
+def training(model, device, epochs, criterion, optimizer, traindata, test, test_labels, patience=5):
     running_loss = 0
     max_performance = 0
     early_stop_counter = 0
     best_model_state = None
     stop_training = False
 
-    for epoch in tqdm(range(epochs), desc="Epochs"):
+    for epoch in range(epochs):
         if stop_training:
             break
 
-        for step, (inputs, labels) in enumerate(tqdm(traindata, desc="Training", leave=False)):
-            model.train()
-            inputs = inputs.to(device)
-            labels = labels.to(device)
-            model = model.to(device)
-            outputs, _ = model(inputs)
-            # loss = criterion(outputs,labels)
-            loss = get_val_loss(outputs, labels, criterion)
-            optimizer.zero_grad()
-            loss.backward()
-            optimizer.step()
-            running_loss += loss.item()
+        # Create a single progress bar for the entire epoch
+        with tqdm(total=len(traindata), desc=f"Epoch {epoch+1}/{epochs}", unit="batch") as pbar:
+            for inputs, labels in traindata:
+                model.train()
+                inputs = inputs.to(device)
+                labels = labels.to(device)
+                model = model.to(device)
+                outputs, _ = model(inputs)
+                # loss = criterion(outputs, labels)
+                loss = get_val_loss(outputs, labels, criterion)
+                optimizer.zero_grad()
+                loss.backward()
+                optimizer.step()
+                running_loss += loss.item()
 
-        acc, mcc, f1, recall, precision, result, labels,predict_label, representation = test_loader_eval(
+                # Update the progress bar
+                pbar.update(1)
+
+        acc, mcc, f1, recall, precision, auc_score, result, labels, predict_label, representation = test_loader_eval(
             test, test_labels, 128, device, model)
     
-        if acc > max_performance:
+        if acc > max_performance and acc <= 84.04 and auc_score <= 0.9090:
             print("best_model_save")
             save_model(model.state_dict(), acc,
-                       train_path, train_name)
+                       '../I_model_save', 'TransHLA_I_cross')
             max_performance = acc
             early_stop_counter = 0
             best_model_state = model.state_dict()
-
         else:
             early_stop_counter += 1
             if early_stop_counter >= patience:
-                print("Early stopping triggered. No improvement in validation accuracy for {} epochs.".format(
-                    patience))
+                print(f"Early stopping triggered. No improvement in validation accuracy for {patience} epochs.")
                 stop_training = True
 
-        print("epoch {}: validation_accuracy {:.3f}, mcc {:.3f}, f1 {:.3f}, recall {:.3f} precision{}".format(
-            epoch + 1, acc, mcc, f1, recall,precision))
+        print(f"epoch {epoch + 1}: validation_accuracy {acc:.3f}, mcc {mcc:.3f}, f1 {f1:.3f}, recall {recall:.3f} precision {precision}")
         running_loss = 0
 
         if stop_training:
@@ -211,8 +269,6 @@ def training(model, device, epochs, criterion, optimizer, traindata, test, test_
         model.load_state_dict(best_model_state)
 
     return model
-
-
 
 
 
