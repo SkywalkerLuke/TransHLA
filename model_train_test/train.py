@@ -158,7 +158,7 @@ def test_loader_eval(test, test_labels, batchsize, device, model):
 
 
 
-# def training(model, device, epochs, criterion, optimizer, traindata, test, test_labels,train_path,train_name,train_path,train_name,patience=5):
+# def training(model, device, epochs, criterion, optimizer, traindata, test, test_labels,train_path,train_name,patience=5):
 #     running_loss = 0
 #     max_performance = 0
 #     early_stop_counter = 0
@@ -214,7 +214,7 @@ def test_loader_eval(test, test_labels, batchsize, device, model):
 
 
 
-def training(model, device, epochs, criterion, optimizer, traindata, test, test_labels, patience=5):
+def training(model, device, epochs, criterion, optimizer, traindata, test, test_labels, train_path,train_name,patience=5):
     running_loss = 0
     max_performance = 0
     early_stop_counter = 0
