@@ -48,7 +48,7 @@ def config():
     parse.add_argument('--test_path', type=str, required=True,
                         help='The path to the test data CSV file.')
     parse.add_argument('--model_path',  type=str, required=True,help = 'The path to the model pickle file')
-    parse.add_argument('--outputs_path',  type=str, required=True,help = 'The path of the outputs')
+    # parse.add_argument('--outputs_path',  type=str, required=True,help = 'The path of the outputs')
     config = parse.parse_args()
     return config
 
@@ -56,7 +56,7 @@ def config():
 def main():
     parameters = config()
     test = pd.read_csv(parameters.test_path, header=0)
-    outputs_path = parameters.outputs_path
+    # outputs_path = parameters.outputs_path
     # test = pd.read_csv("../data/HLA_II_epitope_test.csv", header=0)
     
     # test = pd.read_csv("../data/HLA_I_external_1_time_negative.csv", header=0)
