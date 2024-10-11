@@ -128,7 +128,7 @@ def test_loader_eval(test, test_labels, batchsize, device, model):
     representation_list = []
     test_loader = addbatch(test, test_labels, batchsize,shuffle=False)
     for step, (inputs, labels) in enumerate(test_loader):
-        print(step)
+        # print(step)
         inputs.to(device)
         labels.to(device)
         labels_list.append(labels)
