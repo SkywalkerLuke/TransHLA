@@ -246,7 +246,7 @@ def training(model, device, epochs, criterion, optimizer, traindata, test, test_
         acc, mcc, f1, recall, precision, auc_score, result, labels, predict_label, representation = test_loader_eval(
             test, test_labels, 128, device, model)
     
-        if acc > max_performance and acc <= 84.04 and auc_score <= 0.9090:
+        if acc > max_performance:
             print("best_model_save")
             save_model(model.state_dict(), acc,
                        '../I_model_save', 'TransHLA_I_cross')
