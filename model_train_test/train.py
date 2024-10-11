@@ -243,13 +243,12 @@ def training(model, device, epochs, criterion, optimizer, traindata, test, test_
                 # Update the progress bar
                 pbar.update(1)
 
-        acc, mcc, f1, recall, precision, auc_score, result, labels, predict_label, representation = test_loader_eval(
+        acc, mcc, f1, recall, precision, result, labels, predict_label, representation = test_loader_eval(
             test, test_labels, 128, device, model)
     
         if acc > max_performance:
             print("best_model_save")
-            save_model(model.state_dict(), acc,
-                       '../I_model_save', 'TransHLA_I_cross')
+            save_model(model.state_dict(), acc, train_path, train_name)
             max_performance = acc
             early_stop_counter = 0
             best_model_state = model.state_dict()
