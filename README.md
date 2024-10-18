@@ -43,7 +43,7 @@ And you can use the `inference.py` to use your own model:
 python inference.py --test_path your_test.csv --model_path your_model.pt --ouputs_path your_outputs_path.npy
 ```
 
-And we add an example on colab of how to use `train.py` and `inference.py`：<a href="https://colab.research.google.com/drive/1snAqZTG9BxSVcvDzZA9ipgSWEPBSAJ3r?usp=sharing">Colab Example</a>
+And we add an example on colab of how to use `train.py` and `inference.py`：<a href="https://colab.research.google.com/drive/1snAqZTG9BxSVcvDzZA9ipgSWEPBSAJ3r?usp=sharing">Colab Example</a>.
 
 ### How to use in transformers
 First, users need to download the following packages: `pytorch`, `fair-esm`, and `transformers`. Additionally, the CUDA version must be 11.8 or higher; otherwise, the model will need to be run on CPU.
@@ -119,3 +119,15 @@ if __name__ == "__main__":
     print(representations)
 
 ```
+We also provide the `TransHLA_I.py` and 'TransHLA_II.py' for user to use our model. TransHLA_I.py is used for predicting HLA Class I epitopes, with an input length of 8-14. TransHLA_II.py is used for predicting Class II epitopes, with an input length of 13-21. Here is how to use these files to predict whether a peptide is an epitope.
+
+```
+!python TransHLA_I.py --test_path  --outputs_path 
+```
+
+```
+!python TransHLA_II.py --test_path  --outputs_path 
+```
+
+And the Example is added in the <a href="https://colab.research.google.com/drive/1snAqZTG9BxSVcvDzZA9ipgSWEPBSAJ3r?usp=sharing">Colab Example</a>.
+
