@@ -103,66 +103,66 @@ def main():
     print('mcc: ' + str(mcc))
     print('recall: ' + str(recall))
     print('precision: ' + str(precision))
-    print('sace result')
+    print('save result')
     # outputs = np.save(predict_label)
     np.save(outputs_path,predict_label)
     #plot_auc
-    fpr, tpr, thresholds = roc_curve(np.array(labels), result[:, 1])
-    roc_auc = auc(fpr, tpr)
+    # fpr, tpr, thresholds = roc_curve(np.array(labels), result[:, 1])
+    # roc_auc = auc(fpr, tpr)
     
-    fig = plt.figure()
-    ax = fig.add_subplot(111)
-    ax.set_aspect('equal', adjustable='box')
+    # fig = plt.figure()
+    # ax = fig.add_subplot(111)
+    # ax.set_aspect('equal', adjustable='box')
     
-    plt.plot(fpr, tpr, label='ROC curve (area = %0.2f)' % roc_auc)
-    plt.plot([0, 1], [0, 1], 'k--')
-    plt.xlabel('False Positive Rate')
-    plt.ylabel('True Positive Rate')
-    plt.title('Receiver Operating Characteristic (ROC) Curve')
-    plt.legend(loc="lower right")
-    plt.show()
+    # plt.plot(fpr, tpr, label='ROC curve (area = %0.2f)' % roc_auc)
+    # plt.plot([0, 1], [0, 1], 'k--')
+    # plt.xlabel('False Positive Rate')
+    # plt.ylabel('True Positive Rate')
+    # plt.title('Receiver Operating Characteristic (ROC) Curve')
+    # plt.legend(loc="lower right")
+    # plt.show()
     
     
     
         
-    #plot_confusion_matrix
-    tn, fp, fn, tp = confusion_matrix(labels, predict_label).ravel()
-    specificity = tn / (tn + fp)
+    # #plot_confusion_matrix
+    # tn, fp, fn, tp = confusion_matrix(labels, predict_label).ravel()
+    # specificity = tn / (tn + fp)
     
     
     
-    cm = confusion_matrix(labels, predict_label)
+    # cm = confusion_matrix(labels, predict_label)
     
-    cm_norm = cm.astype('float') / cm.sum(axis=1)[:, np.newaxis]
+    # cm_norm = cm.astype('float') / cm.sum(axis=1)[:, np.newaxis]
     
-    fig, ax = plt.subplots()
-    
-    
-    sns.heatmap(cm, annot=True, fmt='d', cmap='Blues', cbar=False)
+    # fig, ax = plt.subplots()
     
     
+    # sns.heatmap(cm, annot=True, fmt='d', cmap='Blues', cbar=False)
     
     
     
     
     
-    for i in range(cm.shape[0]):
-        for j in range(cm.shape[1]):
-            text_color = 'white' if cm_norm[i, j] > 0.5 else 'black'
-            ax.text(j + 0.5, i + 0.6, f'\n{cm_norm[i, j]*100:.1f}%',
-    
-                    ha='center', va='center', color=text_color)
-    
-    ax.set_xlabel('Predicted')
-    ax.set_ylabel('True')
-    ax.set_title('TransHLA One-time negative External Confusion matrix')
     
     
+    # for i in range(cm.shape[0]):
+    #     for j in range(cm.shape[1]):
+    #         text_color = 'white' if cm_norm[i, j] > 0.5 else 'black'
+    #         ax.text(j + 0.5, i + 0.6, f'\n{cm_norm[i, j]*100:.1f}%',
     
-    tick_labels = ['Negative', 'Positive']
-    ax.xaxis.set_ticklabels(tick_labels)
-    ax.yaxis.set_ticklabels(tick_labels)
-    plt.show()
+    #                 ha='center', va='center', color=text_color)
+    
+    # ax.set_xlabel('Predicted')
+    # ax.set_ylabel('True')
+    # ax.set_title('TransHLA One-time negative External Confusion matrix')
+    
+    
+    
+    # tick_labels = ['Negative', 'Positive']
+    # ax.xaxis.set_ticklabels(tick_labels)
+    # ax.yaxis.set_ticklabels(tick_labels)
+    # plt.show()
     
     # embedding_loader = addbatch(x_test_encoding,test_label,32,shuffle=False)
     # esm2.to(device)
