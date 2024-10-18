@@ -27,6 +27,7 @@ Then, install the `requirements.txt`
 ```
 pip install -r  requirements.txt
 ```
+If you want to use the model in an isolated environment, we also provide the `Dockerfile`, `TransHLA.def`, `transhla_env.yaml`
 
 We provide the `TransHLA_I.py` and 'TransHLA_II.py' for user to use our model. TransHLA_I.py is used for predicting HLA Class I epitopes. TransHLA_II.py is used for predicting Class II epitopes. Here is how to use these files to predict whether a peptide is an epitope.
 
