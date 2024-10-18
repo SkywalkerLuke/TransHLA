@@ -122,11 +122,11 @@ if __name__ == "__main__":
 We also provide the `TransHLA_I.py` and 'TransHLA_II.py' for user to use our model. TransHLA_I.py is used for predicting HLA Class I epitopes, with an input length of 8-14. TransHLA_II.py is used for predicting Class II epitopes, with an input length of 13-21. Here is how to use these files to predict whether a peptide is an epitope.
 
 ```
-!python TransHLA_I.py --test_path  --outputs_path 
+python TransHLA_I.py --test_path  --outputs_path 
 ```
 
 ```
-!python TransHLA_II.py --test_path  --outputs_path 
+python TransHLA_II.py --test_path  --outputs_path 
 ```
 
 And the Example is added in the <a href="https://colab.research.google.com/drive/1snAqZTG9BxSVcvDzZA9ipgSWEPBSAJ3r?usp=sharing">Colab Example</a>.
