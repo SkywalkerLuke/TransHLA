@@ -43,6 +43,7 @@ And you can use the `inference.py` to use your own model:
 python inference.py --test_path your_test.csv --model_path your_model.pt --ouputs_path your_outputs_path.npy
 ```
 
+And we add an example on colab of how to use `train.py` and `inference.py`：<a href="https://example.com">Colab Example</a>
 
 ### How to use in transformers
 First, users need to download the following packages: `pytorch`, `fair-esm`, and `transformers`. Additionally, the CUDA version must be 11.8 or higher; otherwise, the model will need to be run on CPU.
