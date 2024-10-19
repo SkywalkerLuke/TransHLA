@@ -73,7 +73,7 @@ And we add an example on colab of how to use `train.py` and `inference.py`：<a 
 ### How to use in transformers
 First, users need to download the following packages: `pytorch`, `fair-esm`, and `transformers`. Additionally, the CUDA version must be 11.8 or higher; otherwise, the model will need to be run on CPU.
 ``` 
-pip3 install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118
+pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118
 pip install transformers
 pip install fair-esm
 ```
